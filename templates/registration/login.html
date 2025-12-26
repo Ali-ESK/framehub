@@ -9,6 +9,11 @@
         <div class="display-6 fw-bold">Frame<span style="color:var(--fh-red)">Hub</span></div>
         <div class="fh-muted">Sign in to manage videos</div>
       </div>
+{% if form.errors %}
+  <div class="alert alert-danger">
+    Invalid username or password.
+  </div>
+{% endif %}
 
       <form method="post">
         {% csrf_token %}
