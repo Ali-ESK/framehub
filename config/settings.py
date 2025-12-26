@@ -109,7 +109,8 @@ AUTH_PASSWORD_VALIDATORS = [
 LOGIN_REDIRECT_URL = "/"
 LOGOUT_REDIRECT_URL = "/login/"
 MEDIA_URL = "/media/"
-MEDIA_ROOT = "/var/data/media"
+MEDIA_URL = "/media/"
+MEDIA_ROOT = os.environ.get("MEDIA_ROOT", str(BASE_DIR / "media"))
 LOGIN_URL = "/login/"
 
 # Internationalization
