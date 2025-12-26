@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>{% block title %}FrameHub{% endblock %}</title>
+
+  <!-- Bootstrap -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+
+  <!-- Font (we can swap to Qatar Arabic if you have the file) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@600;700;800&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --fh-red:#E30613;
+      --fh-black:#111111;
+      --fh-surface:#1a1a1a;
+      --fh-border:#2a2a2a;
+      --fh-radius:18px;
+    }
+    body{
+      font-family: "Cairo", system-ui, -apple-system, Segoe UI, Roboto, sans-serif;
+      background: #0f0f10;
+      color: #fff;
+    }
+    .fh-card{
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: var(--fh-radius);
+      backdrop-filter: blur(10px);
+    }
+    .fh-input, .fh-btn{
+      border-radius: 999px !important;
+    }
+    .fh-btn-primary{
+      background: var(--fh-red);
+      border: none;
+      color: #fff;
+    }
+    .fh-btn-primary:hover{
+      filter: brightness(0.95);
+    }
+    .fh-muted{
+      color: rgba(255,255,255,0.7);
+    }
+    a{ color: #fff; }
+    a:hover{ color: var(--fh-red); }
+  </style>
+
+  {% block head %}{% endblock %}
+</head>
+<body>
+<nav class="navbar navbar-dark py-3">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">
+      Frame<span style="color:var(--fh-red)">Hub</span>
+    </a>
+
+    <div class="d-flex gap-2">
+      {% if user.is_authenticated %}
+        <a class="btn btn-outline-light fh-btn" href="{% url 'videos:list' %}">Videos</a>
+        <a class="btn btn-outline-light fh-btn" href="{% url 'videos:upload' %}">Upload</a>
+        <a class="btn fh-btn fh-btn-primary" href="{% url 'logout' %}">Logout</a>
+      {% else %}
+        <a class="btn fh-btn fh-btn-primary" href="{% url 'login' %}">Login</a>
+      {% endif %}
+    </div>
+  </div>
+</nav>
+
+<main class="container py-4">
+  {% block content %}{% endblock %}
+</main>
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

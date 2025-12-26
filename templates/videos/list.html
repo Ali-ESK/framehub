@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}Videos — FrameHub{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div>
+    <h2 class="fw-bold mb-0">Videos</h2>
+    <div class="fh-muted">Browse and play uploaded videos</div>
+  </div>
+  {% if user.is_staff or user.is_superuser %}
+    <a class="btn fh-btn fh-btn-primary" href="{% url 'videos:upload' %}">Upload Video</a>
+  {% endif %}
+</div>
+
+<div class="row g-3">
+  {% for v in videos %}
+    <div class="col-md-6 col-lg-4">
+      <a class="text-decoration-none" href="{% url 'videos:detail' v.id %}">
+        <div class="fh-card p-3 h-100">
+          <div class="fw-bold">{{ v.title }}</div>
+          <div class="fh-muted small">Uploaded {{ v.created_at|date:"M d, Y" }}</div>
+        </div>
+      </a>
+    </div>
+  {% empty %}
+    <div class="col-12">
+      <div class="fh-card p-4 text-center">
+        <div class="fw-bold">No videos yet</div>
+        <div class="fh-muted">Upload a video to see it here.</div>
+      </div>
+    </div>
+  {% endfor %}
+</div>
+{% endblock %}

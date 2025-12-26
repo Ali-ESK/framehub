@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block title %}{{ video.title }} — FrameHub{% endblock %}
+
+{% block content %}
+<div class="fh-card p-4">
+  <div class="d-flex justify-content-between align-items-start gap-3 flex-wrap">
+    <div>
+      <h3 class="fw-bold mb-1">{{ video.title }}</h3>
+      <div class="fh-muted small">Uploaded by {{ video.uploaded_by.username }} • {{ video.created_at|date:"M d, Y" }}</div>
+    </div>
+    <a class="btn btn-outline-light fh-btn" href="{{ video.file.url }}" download>Download</a>
+  </div>
+
+  <div class="mt-4">
+    <video controls style="width:100%; border-radius: 18px; border:1px solid rgba(255,255,255,0.12);">
+      <source src="{{ video.file.url }}">
+      Your browser does not support the video tag.
+    </video>
+  </div>
+</div>
+{% endblock %}

@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Login — FrameHub{% endblock %}
+
+{% block content %}
+<div class="row justify-content-center">
+  <div class="col-md-6 col-lg-5">
+    <div class="fh-card p-4 p-md-5">
+      <div class="text-center mb-4">
+        <div class="display-6 fw-bold">Frame<span style="color:var(--fh-red)">Hub</span></div>
+        <div class="fh-muted">Sign in to manage videos</div>
+      </div>
+
+      <form method="post">
+        {% csrf_token %}
+        <div class="mb-3">
+          <label class="form-label">Username</label>
+          <input class="form-control fh-input" name="username" required>
+        </div>
+        <div class="mb-3">
+          <label class="form-label">Password</label>
+          <input class="form-control fh-input" type="password" name="password" required>
+        </div>
+        <button class="btn w-100 fh-btn fh-btn-primary py-2 fw-bold" type="submit">
+          Login
+        </button>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
